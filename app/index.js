@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import Login from "./LoginPage";
 
 class App extends React.Component {
   render() {
-    return <div>Hello World</div>;
+    return <Login/>
   }
 }
 
