@@ -24,13 +24,13 @@ function login(email, password) {
   };
 
   return fetch(`${config.apiUrl}/login`, requestOptions)
-    .then(handleResponse)
-    .then(user => {
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      currentUserSubject.next(user);
+        .then(handleResponse)
+        .then(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(user));
 
-      return user;
-    });
+            return user;
+        });
 }
 
 function logout() {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { withRouter } from 'react-router';
 import * as Yup from "yup";
 import { authenticationService } from "../_services/authentication.service";
 
@@ -25,22 +26,20 @@ class LoginPage extends Component {
             email: Yup.string().required("Email is required"),
             password: Yup.string().required("Password is required")
           })}
-          onSubmit={(values, { setStatus, setSubmitting }) => {
+          onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
             setStatus();
-            authenticationService.login(values.email, values.password).then(
+            authenticationService.login(email, password).then(
               user => {
-                const { from } = this.props.location.state || {
-                  from: { pathname: "/" }
-                };
-                this.props.history.push(from);
+                this.props.history.push('/');
               },
               error => {
-                setSubmitting(false), setStatus(error);
+                setSubmitting(false);
+                setStatus(error);
               }
             );
           }}
         >
-          {({ errors, touched, status, isSubmitting }) => (
+          {({ status, isSubmitting }) => (
             <Form>
               <div>
                 <label htmlFor="email">Email</label>
@@ -57,6 +56,7 @@ class LoginPage extends Component {
                   Login
                 </button>
               </div>
+              {status && <div> {status} </div>}
             </Form>
           )}
         </Formik>
@@ -65,4 +65,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);

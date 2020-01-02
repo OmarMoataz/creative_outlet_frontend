@@ -8,6 +8,8 @@ import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import { PrivateRoute } from "@/_components";
 
+import './index.css';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -38,7 +40,9 @@ class App extends React.Component {
             <nav>
               <div>
                 <Link to="/">Home</Link>
-                <a href="/login" onClick={this.logout}>Logout</a>
+                <a href="/login" onClick={this.logout}>
+                  Logout
+                </a>
               </div>
             </nav>
           )}
