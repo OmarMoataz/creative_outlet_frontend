@@ -15,6 +15,8 @@ module.exports = {
   },
   mode: "development",
   plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
     new HtmlWebpackPlugin({
       template: "app/index.html"
     })

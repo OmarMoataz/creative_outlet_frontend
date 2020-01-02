@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Link, Switch } from "react-router-dom";
 
+import "./styles/tailwind.css";
+
 import { history } from "@/_helpers";
 import { authenticationService } from "@/_services";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import { PrivateRoute } from "@/_components";
-
-import './index.css';
 
 class App extends React.Component {
   constructor(props) {
