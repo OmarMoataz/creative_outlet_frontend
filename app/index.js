@@ -2,6 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Link, Switch } from "react-router-dom";
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, fabars, faBars } from '@fortawesome/free-solid-svg-icons';
+
 import "./styles/tailwind.css";
 
 import { history } from "@/_helpers";
@@ -10,8 +14,11 @@ import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import { PrivateRoute } from "@/_components";
 
+
+
 class App extends React.Component {
   constructor(props) {
+    library.add(fab, faCheckSquare, faBars);
     super(props);
 
     this.state = {
@@ -36,16 +43,6 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          {currentUser && (
-            <nav>
-              <div>
-                <Link to="/">Home</Link>
-                <a href="/login" onClick={this.logout}>
-                  Logout
-                </a>
-              </div>
-            </nav>
-          )}
           <Switch>
             <PrivateRoute exact path="/" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />

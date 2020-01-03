@@ -7,12 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "create": "webpack",
     "start": "npm run build:style && webpack-dev-server --open",
-    "build:style":"tailwind build app/styles/index.css -o app/styles/tailwind.css"
+    "build:style": "tailwind build app/styles/index.css -o app/styles/tailwind.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/free-regular-svg-icons": "^5.12.0",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
     "formik": "^2.0.7",
     "history": "^4.10.1",
     "react": "^16.12.0",
