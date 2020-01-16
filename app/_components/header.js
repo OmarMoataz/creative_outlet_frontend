@@ -1,13 +1,48 @@
 import React, { useState } from "react";
-import { authenticationService } from "../_services/authentication.service";
-authenticationService;
+import { authenticationService } from "../_services/authenticationService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = props => {
   const [isMenuShown, setMenuShown] = useState(false);
 
+  const renderMenu = () => {
+    return (
+      <div
+        className={`${
+          isMenuShown ? "block" : "hidden"
+        } w-full flex-grow lg:flex lg:items-center lg:w-auto`}
+      >
+        <div className="text-sm lg:flex-grow">
+          {authenticationService.currentUserValue() ? (
+            <React.Fragment>
+              <a
+                href="/blog"
+                className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              >
+                Blog
+              </a>
+              <button
+                onClick={() => authenticationService.logout()}
+                className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              >
+                Logout
+              </button>
+            </React.Fragment>
+          ) : (
+            <a
+              href="/login"
+              className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            >
+              Login
+            </a>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-4">
+    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-2">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <a
           href="/"
@@ -25,20 +60,7 @@ const Header = props => {
           <FontAwesomeIcon className="sm:text-5xl" icon="bars" />
         </button>
       </div>
-      <div
-        className={`${
-          isMenuShown ? "block" : "hidden"
-        } w-full flex-grow lg:flex lg:items-center lg:w-auto`}
-      >
-        <div className="text-sm lg:flex-grow">
-          <a
-            href="/blog"
-            className="lg:float-right lg:mr-3 text-3xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-          >
-            Blog
-          </a>
-        </div>
-      </div>
+      {renderMenu()}
     </nav>
   );
 };
