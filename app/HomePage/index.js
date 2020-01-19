@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { authenticationService } from "../_services/authenticationService";
+
 import requester from "helpers/requester";
+import PostCard from "shared-components/cards/postCard";
 
 const HomePage = () => {
   const [posts, setPosts] = useState([]);
@@ -18,9 +19,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white container">
       {posts.map(post => {
-        return <div> {post.title} </div>;
+        return <PostCard key={post.id} post={post}/>;
       })}
     </div>
   );
