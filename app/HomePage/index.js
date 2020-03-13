@@ -11,7 +11,7 @@ const HomePage = () => {
       method: "GET",
       url: "/posts"
     });
-    setPosts(response.data);
+    setPosts(response.data.data);
   };
 
   useEffect(() => {
@@ -19,10 +19,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="bg-white container">
-      {posts.map(post => {
-        return <PostCard key={post.id} post={post}/>;
-      })}
+    <div className="bg-white container ml-5 mr-5">
+      <div className="">
+        {posts.map(post => {
+          return <PostCard key={post.id} post={post} />;
+        })}
+      </div>
     </div>
   );
 };
