@@ -1,32 +1,19 @@
-import React, { useState, useEffect } from "react";
-
-import requester from "helpers/requester";
-import PostCard from "shared-components/cards/postCard";
+import React, { useState } from "react";
+import PostListing from "../_components/Post/listing";
+import PostDetails from "../_components/Post/details";
 
 const HomePage = () => {
-  const [posts, setPosts] = useState([]);
-
-  const getPosts = async () => {
-    const response = await requester({
-      method: "GET",
-      url: "/posts"
-    });
-    setPosts(response.data.data);
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
-
+  const [activePost, setActivePost] = useState(null);
+  const handleClickPost = (post) => {
+    setActivePost(post);
+  }
+  
   return (
-    <div className="bg-white container ml-5 mr-5">
-      <div className="">
-        {posts.map(post => {
-          return <PostCard key={post.id} post={post} />;
-        })}
-      </div>
+    <div className="bg-white container">
+      <PostListing onClickPost={handleClickPost}/>
+      <PostDetails post={activePost}/>
     </div>
-  );
+  )
 };
 
 export default HomePage;
