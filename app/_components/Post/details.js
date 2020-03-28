@@ -5,10 +5,10 @@ const PostDetails = props => {
 
   if (post) {
     return (
-      <React.Fragment>
+      <div>
         <div> {post.title} </div>
         <div> {post.description} </div>
-      </React.Fragment>
+      </div>
     );
   } else {
     return <div> Please choose a post to read. </div>
