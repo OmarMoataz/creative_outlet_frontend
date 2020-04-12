@@ -5,9 +5,10 @@ const PostDetails = props => {
 
   if (post) {
     return (
-      <div>
-        <div> {post.title} </div>
-        <div> {post.description} </div>
+      <div class="post">
+        <div class="post__title"> {post.title} </div>
+        <div class="post__desc"> {post.description} </div>
+        <div class="post__content"> {post.content} </div>
       </div>
     );
   } else {

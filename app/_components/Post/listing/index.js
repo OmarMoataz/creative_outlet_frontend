@@ -45,8 +45,8 @@ const PostListing = props => {
       }
     >
       {posts.map(post => (
-        <div>
-          <button key={post.id} onClick={() => props.onClickPost(post)}>
+        <div key={post.id}>
+          <button onClick={() => props.onClickPost(post)}>
             <PostCard post={post} />
           </button>
         </div>
