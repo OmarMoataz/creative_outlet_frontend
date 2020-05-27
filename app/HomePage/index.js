@@ -9,9 +9,9 @@ const HomePage = () => {
   }
   
   return (
-    <div className="bg-white container">
+    <div className="bg-white homepage__container">
       <PostListing onClickPost={handleClickPost}/>
-      <PostDetails post={activePost}/>
+      {/* <PostDetails post={activePost}/> */}
     </div>
   )
 };
