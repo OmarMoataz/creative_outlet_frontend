@@ -40,10 +40,10 @@ const PostListing = (props) => {
   };
 
   return (
-    <div>
+    <div className="listing__scrollable-div">
       {posts.map((post) => (
         <div key={post.id}>
-          <button onClick={() => props.onClickPost(post)}>
+          <button className="listing-item__wrap" onClick={() => props.onClickPost(post)}>
             <PostCard post={post} />
           </button>
         </div>
