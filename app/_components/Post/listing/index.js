@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import InfiniteScroll from 'react-infinite-scroll-component';
+import React, { useState } from "react";
+import { Waypoint } from "react-waypoint";
+
 
 import requester from "helpers/requester";
 import PostCard from "shared-components/cards/postCard";
+import FooterInfo from "shared-components/FooterInfo";
 
 import "./styles.css";
 
@@ -10,46 +12,47 @@ const PostListing = (props) => {
   const [posts, setPosts] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const perPage = 10;
 
-  useEffect(() => {
-    getPosts();
-  }, []);
-
   const getPosts = async () => {
-    const response = await requester({
-      method: "GET",
-      url: `/posts?page=${page}&per_page=${perPage}`
-    });
-    setPosts([...posts, ...response.data.data]);
-    if (posts.length == response.data.meta.totalCount) {
-      setHasMore(false);
+    if (hasMore) {
+      try {
+        setIsLoading(true);
+        const response = await requester({
+          method: "GET",
+          url: `/posts?page=${page}&per_page=${perPage}`
+        });
+        if (
+          posts.length + response.data.data.length ==
+          response.data.meta.totalCount
+        ) {
+          setHasMore(false);
+        }
+        setPosts([...posts, ...response.data.data]);
+        setPage(page + 1);
+      } catch (e) {
+        setIsError(true);
+      }
     }
-    setPage(page + 1);
+    setIsLoading(false);
   };
 
   return (
-    <InfiniteScroll
-      dataLength={posts.length}
-      next={getPosts}
-      loader={<h4> Loading </h4>}
-      hasMore={hasMore}
-      endMessage={
-        <div className="p-2 bg-gray-400 text-center">
-          No more posts to show.
-        </div>
-      }
-    >
+    <div>
       {posts.map((post) => (
         <div key={post.id}>
-          <button
-            onClick={() => props.onClickPost(post)}
-          >
+          <button onClick={() => props.onClickPost(post)}>
             <PostCard post={post} />
           </button>
         </div>
       ))}
-    </InfiniteScroll>
+      <Waypoint onEnter={getPosts} threshold={0} />
+      {isLoading && <FooterInfo content="Loading..." />}
+      {isError && <FooterInfo content="Error loading remaining data"/>}
+      {!hasMore && <FooterInfo content="No more articles to show" />}
+    </div>
   );
 };
 
