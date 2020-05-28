@@ -18,6 +18,7 @@ import HomePage from "./HomePage";
 import Blog from "./Blog";
 import Header from "./_components/header";
 import { PrivateRoute } from "@/_components";
+import ArticleDetailsPage from "./ArticleDetailsPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -41,17 +42,16 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentUser } = this.state;
-
     return (
       <React.Fragment>
         <Header />
         <Router history={history}>
           <div>
             <Switch>
+              <Route exact path="/login" component={LoginPage} />
               <PrivateRoute exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
-              <Route exact path="/login" component={LoginPage} />
+              <PrivateRoute exact path='/:id' children={<ArticleDetailsPage/>} />
             </Switch>
           </div>
         </Router>

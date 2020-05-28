@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { withRouter } from 'react-router-dom';
 
-import requester from "helpers/requester";
-import PostCard from "shared-components/cards/postCard";
+import PostListing from "../_components/Post/listing";
+import PostDetails from "../_components/Post/details";
+import ArticleDetailsPage from "../ArticleDetailsPage";
 
-const HomePage = () => {
-  const [posts, setPosts] = useState([]);
-
-  const getPosts = async () => {
-    const response = await requester({
-      method: "GET",
-      url: "/posts"
-    });
-    setPosts(response.data);
-  };
-
-  useEffect(() => {
-    getPosts();
-  }, []);
-
+const HomePage = (props) => {
+  const [activePost, setActivePost] = useState(null);
+  const handleClickPost = (post) => {
+    setActivePost(post);
+    if (window.outerWidth < 992) {
+      props.history.push(`${post.id}`);
+    }
+  }
+  
   return (
-    <div className="bg-white container">
-      {posts.map(post => {
-        return <PostCard key={post.id} post={post}/>;
-      })}
+    <div className="bg-white homepage__container">
+      <PostListing onClickPost={handleClickPost}/>
+      {window.outerWidth >= 992 && <PostDetails post={activePost}/>}
     </div>
-  );
+  )
 };
 
-export default HomePage;
+export default withRouter(HomePage);

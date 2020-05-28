@@ -1,0 +1,14 @@
+.post {
+  padding: 0 10px;
+}
+
+.post__title {
+  font-size: 1.5625rem;
+  padding: 10px;
+  text-align: center;
+}
+
+.post__desc {
+  color: gray;
+  margin-bottom: 10px;
+}
