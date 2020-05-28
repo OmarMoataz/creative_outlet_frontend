@@ -18,6 +18,7 @@ import HomePage from "./HomePage";
 import Blog from "./Blog";
 import Header from "./_components/header";
 import { PrivateRoute } from "@/_components";
+import ArticleDetailsPage from "./ArticleDetailsPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class App extends React.Component {
             <Switch>
               <PrivateRoute exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
+              <Route path='/:id' children={<ArticleDetailsPage/>} />
               <Route exact path="/login" component={LoginPage} />
             </Switch>
           </div>

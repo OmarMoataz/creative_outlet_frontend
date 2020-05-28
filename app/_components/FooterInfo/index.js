@@ -6,7 +6,7 @@ const FooterInfo = (props) => {
   const { content } = props;
 
   return ( 
-    <div class="footer-info"> {content} </div>
+    <div className="footer-info"> {content} </div>
   );
 }
 
