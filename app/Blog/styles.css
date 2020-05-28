@@ -1,0 +1,17 @@
+.create-article__item {
+  margin: 10px 0;
+}
+
+.create-article__content, .create-article__title, .create-article__description {
+  width: 100%;
+}
+
+.create-article__label {
+  display: inline-block;
+}
+
+.create-article__publish-btn {
+  border: 1px solid black;
+  padding: 3px;
+  float: right;
+}

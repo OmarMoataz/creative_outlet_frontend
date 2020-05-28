@@ -1,32 +1,34 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React from "react";
 
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import requester from "../_helpers/requester";
 
-const Blog = () => {
-  const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles);
-  }, []);
+import "./styles.css";
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
-  const publishPost = async values => {
-    let postData = new FormData();
-    postData.set("content", values.content);
-    postData.set("title", values.title);
-    const response = await requester({
-      method: "POST",
-      url: "/posts",
-      data: postData
-    });
+const Blog = (props) => {
+  const publishArticle = async (values) => {
+    let articleData = new FormData();
+    try {
+      articleData.set("content", values.content);
+      articleData.set("title", values.title);
+      articleData.set("description", values.description);
+      const response = await requester({
+        method: "POST",
+        url: "/posts",
+        data: articleData
+      });
+      const articleId = response.data.id;
+      props.history.push(`/${articleId}`);
+    } catch (e) {
+      // do something.
+    }
   };
 
   return (
     <div className="m-4">
       <Formik
         initialValues={{ title: "", content: "" }}
-        validate={values => {
+        validate={(values) => {
           const errors = {};
           if (!values.title) {
             errors.title = "Post must have a title.";
@@ -35,29 +37,42 @@ const Blog = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          publishPost(values);
+        onSubmit={(values) => {
+          publishArticle(values);
         }}
       >
         {({ isSubmitting }) => (
-          <Form>
-            <Field className="border block" name="title" />
-            <Field className="border block" name="content" />
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              {isDragActive ? (
-                <p>Drop the files here ...</p>
-              ) : (
-                <p>Drag 'n' drop some files here, or click to select files</p>
-              )}
-            </div>
+          <Form className="create-article">
+            <h1 className="create-article__label"> Create Article </h1>
             <button
-              className="border p-1 my-1"
+              className="create-article__publish-btn"
               type="submit"
               disabled={isSubmitting}
             >
-              Submit
+              Publish
             </button>
+            <div className="create-article__item">
+              <h2> Article Title </h2>
+              <Field
+                className="create-article__title border block"
+                name="title"
+              />
+            </div>
+            <div className="create-article__item">
+              <h2> Article Description </h2>
+              <Field
+                className="create-article__description border block"
+                name="description"
+              />
+            </div>
+            <div className="create-article__item">
+              <h2> Article Content </h2>
+              <Field
+                component="textarea"
+                className="create-article__content border block"
+                name="content"
+              />
+            </div>
           </Form>
         )}
       </Formik>
