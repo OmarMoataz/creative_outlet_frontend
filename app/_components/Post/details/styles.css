@@ -1,14 +1,23 @@
 .post {
   padding: 0 10px;
+  text-align: center;
+}
+
+.post__content {
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 20px;
+  white-space: pre-wrap;
 }
 
 .post__title {
-  font-size: 1.5625rem;
+  font-size: 3rem;
   padding: 10px;
   text-align: center;
 }
 
 .post__desc {
+  font-size: 2rem;
   color: gray;
   margin-bottom: 10px;
 }
