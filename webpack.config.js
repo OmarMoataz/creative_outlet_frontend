@@ -18,7 +18,13 @@ module.exports = {
           }
         }
       },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] }
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.(jpg|png|jpeg)/,
+        use: {
+          loader: "file-loader"
+        }
+      }
     ]
   },
   mode: "development",
@@ -36,7 +42,8 @@ module.exports = {
       "@": path.join(__dirname, "./app"),
       "shared-components": path.join(__dirname, "/app/_components"),
       helpers: path.join(__dirname, "/app/_helpers"),
-      services: path.join(__dirname, "/app/_services")
+      services: path.join(__dirname, "/app/_services"),
+      "assets": path.join(__dirname, "/assets/")
     }
   },
   devServer: {
