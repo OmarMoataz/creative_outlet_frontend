@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.create-article__content {
+  white-space: pre-wrap;
+}
+
 .create-article__label {
   display: inline-block;
 }

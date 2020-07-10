@@ -69,7 +69,7 @@ const Blog = (props) => {
               <h2> Article Content </h2>
               <Field
                 component="textarea"
-                className="create-article__content border block"
+                className="create-article__content border"
                 name="content"
               />
             </div>
