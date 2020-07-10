@@ -10,6 +10,7 @@ const PostDetails = props => {
       <div className="post">
         <div className="post__title"> {post.title} </div>
         <div className="post__desc"> {post.description} </div>
+        {post.thumbnailUrl && <img className="post__thumbnail" src={post.thumbnailUrl} />}
         <div className="post__content"> {post.content} </div>
       </div>
     );

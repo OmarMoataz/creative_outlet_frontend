@@ -12,6 +12,7 @@ const Blog = (props) => {
       articleData.set("content", values.content);
       articleData.set("title", values.title);
       articleData.set("description", values.description);
+      articleData.set("thumbnail", values.thumbnail);
       const response = await requester({
         method: "POST",
         url: "/posts",
@@ -41,7 +42,7 @@ const Blog = (props) => {
           publishArticle(values);
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, setFieldValue }) => (
           <Form className="create-article">
             <h1 className="create-article__label"> Create Article </h1>
             <button
@@ -63,6 +64,18 @@ const Blog = (props) => {
               <Field
                 className="create-article__description border block"
                 name="description"
+              />
+            </div>
+            <div className="create-article__item">
+              <h2> Article Thumbnail </h2>
+              <input
+                id="thumbnail"
+                name="thumbnail"
+                type="file"
+                onChange={(event) => {
+                  console.log(event.currentTarget.files[0]);
+                  setFieldValue("thumbnail", event.currentTarget.files[0]);
+                }}
               />
             </div>
             <div className="create-article__item">
