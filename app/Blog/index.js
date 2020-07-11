@@ -44,7 +44,7 @@ const Blog = (props) => {
       >
         {({ isSubmitting, setFieldValue }) => (
           <Form className="create-article">
-            <h1 className="create-article__label"> Create Article </h1>
+            <h1 className="create-article__lbl"> Create Article </h1>
             <button
               className="create-article__publish-btn"
               type="submit"
@@ -53,21 +53,21 @@ const Blog = (props) => {
               Publish
             </button>
             <div className="create-article__item">
-              <h2> Article Title </h2>
+              <h2 className="create-article__item-lbl"> Article Title </h2>
               <Field
                 className="create-article__title border block"
                 name="title"
               />
             </div>
             <div className="create-article__item">
-              <h2> Article Description </h2>
+              <h2 className="create-article__item-lbl"> Article Description </h2>
               <Field
                 className="create-article__description border block"
                 name="description"
               />
             </div>
             <div className="create-article__item">
-              <h2> Article Thumbnail </h2>
+              <h2 className="create-article__item-lbl"> Article Thumbnail </h2>
               <input
                 id="thumbnail"
                 name="thumbnail"
@@ -79,7 +79,7 @@ const Blog = (props) => {
               />
             </div>
             <div className="create-article__item">
-              <h2> Article Content </h2>
+              <h2 className="create-article__item-lbl"> Article Content </h2>
               <Field
                 component="textarea"
                 className="create-article__content border"
