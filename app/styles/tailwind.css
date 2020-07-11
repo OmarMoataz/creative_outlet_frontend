@@ -11408,7 +11408,7 @@ html {
 }
 
 @media (min-width: 992px) {
-  html { font-size: 16px;
+  html { font-size: 14px;
   }
 }
 
@@ -54514,4 +54514,4 @@ html {
   .xl\:z-auto {
     z-index: auto;
   }
-} 
+}

@@ -1,0 +1,27 @@
+.create-article__item {
+  margin: 10px 0;
+}
+
+.create-article__content, .create-article__title, .create-article__description {
+  width: 100%;
+}
+
+.create-article__content {
+  white-space: pre-wrap;
+  font-size: 1.25rem;
+}
+
+.create-article__lbl {
+  display: inline-block;
+  font-size: 2rem;
+}
+
+.create-article__item-lbl {
+  font-size: 1.5rem;
+}
+
+.create-article__publish-btn {
+  border: 1px solid black;
+  padding: 3px;
+  float: right;
+}
