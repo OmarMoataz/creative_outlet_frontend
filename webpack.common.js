@@ -1,12 +1,8 @@
-var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var path = require("path");
 
 module.exports = {
   entry: ["@babel/polyfill", "./app/index.js"],
-  output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: "index_bundle.js"
-  },
   module: {
     rules: [
       {
@@ -27,7 +23,6 @@ module.exports = {
       }
     ]
   },
-  mode: "development",
   plugins: [
     require("tailwindcss"),
     require("autoprefixer"),
@@ -46,13 +41,4 @@ module.exports = {
       "assets": path.join(__dirname, "/assets/")
     }
   },
-  devServer: {
-    historyApiFallback: true
-  },
-  externals: {
-    // global app config object
-    config: JSON.stringify({
-      apiUrl: "http://localhost:3000"
-    })
-  }
-};
+}

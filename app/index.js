@@ -22,6 +22,7 @@ import ArticleDetailsPage from "./ArticleDetailsPage";
 
 class App extends React.Component {
   constructor(props) {
+    console.log("Called");
     library.add(fab, faCheckSquare, faBars);
     super(props);
 
