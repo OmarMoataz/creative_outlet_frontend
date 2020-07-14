@@ -11,7 +11,7 @@ module.exports = merge({
   externals: {
     // global app config object
     config: JSON.stringify({
-      apiUrl: "https://creative-outlet-api.herokuapp.com/"
+      apiUrl: "https://creative-outlet-api.herokuapp.com"
     })
   }
 }, common);
