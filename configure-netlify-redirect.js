@@ -2,10 +2,10 @@
 
 const fs = require('fs');
 
-fs.writeFile("dist/_static", '/* /index.html 200', (err) => {
+fs.writeFile("dist/_redirects", '/* /index.html 200', (err) => {
   if (err) {
     console.log(`Error writing to _static file: ${err}`);
   } else {
-    console.log('_static file created successfully');
+    console.log('_redirects file created successfully');
   }
 })
