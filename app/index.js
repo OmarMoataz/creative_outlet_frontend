@@ -22,7 +22,6 @@ import ArticleDetailsPage from "./ArticleDetailsPage";
 
 class App extends React.Component {
   constructor(props) {
-    console.log("Called");
     library.add(fab, faCheckSquare, faBars);
     super(props);
 
@@ -50,7 +49,7 @@ class App extends React.Component {
           <div>
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/" component={HomePage} />
+              <Route exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
               <PrivateRoute exact path='/:id' children={<ArticleDetailsPage/>} />
             </Switch>
