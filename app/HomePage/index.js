@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 import PostListing from "../_components/Post/listing";
 import PostDetails from "../_components/Post/details";
-import ArticleDetailsPage from "../ArticleDetailsPage";
 
 const HomePage = (props) => {
   const [activePost, setActivePost] = useState(null);

@@ -1,27 +1,32 @@
 import React from "react";
 
 import { Formik, Field, Form } from "formik";
-import requester from "../_helpers/requester";
+import useHttp from "../_services/useHttp";
 
 import "./styles.css";
 
 const Blog = (props) => {
+  const triggerRequest = useHttp({
+    url: "/posts", 
+    method: "POST"
+  })
+  
   const publishArticle = async (values) => {
     let articleData = new FormData();
+
     try {
       articleData.set("content", values.content);
       articleData.set("title", values.title);
       articleData.set("description", values.description);
       articleData.set("thumbnail", values.thumbnail);
-      const response = await requester({
-        method: "POST",
-        url: "/posts",
-        data: articleData
-      });
+
+      const [response, error, isLoading] = await triggerRequest(articleData);
+      console.log("returned");
       const articleId = response.data.id;
+      console.log(articleId);
       props.history.push(`/${articleId}`);
     } catch (e) {
-      // do something.
+      console.log(`Something went wrong while creating article! ${e}`);
     }
   };
 
@@ -60,7 +65,10 @@ const Blog = (props) => {
               />
             </div>
             <div className="create-article__item">
-              <h2 className="create-article__item-lbl"> Article Description </h2>
+              <h2 className="create-article__item-lbl">
+                {" "}
+                Article Description{" "}
+              </h2>
               <Field
                 className="create-article__description border block"
                 name="description"
@@ -73,7 +81,6 @@ const Blog = (props) => {
                 name="thumbnail"
                 type="file"
                 onChange={(event) => {
-                  console.log(event.currentTarget.files[0]);
                   setFieldValue("thumbnail", event.currentTarget.files[0]);
                 }}
               />
