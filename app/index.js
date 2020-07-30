@@ -4,10 +4,7 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import {
-  faCheckSquare,
-  faBars
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles/tailwind.css";
 
@@ -22,7 +19,7 @@ import ArticleDetailsPage from "./ArticleDetailsPage";
 
 class App extends React.Component {
   constructor(props) {
-    library.add(fab, faCheckSquare, faBars);
+    library.add(fab, faCheckSquare);
     super(props);
 
     this.state = {
@@ -31,7 +28,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    authenticationService.currentUser.subscribe(x =>
+    authenticationService.currentUser.subscribe((x) =>
       this.setState({ currentUser: x })
     );
   }
@@ -51,7 +48,11 @@ class App extends React.Component {
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
-              <PrivateRoute exact path='/:id' children={<ArticleDetailsPage/>} />
+              <PrivateRoute
+                exact
+                path="/:id"
+                children={<ArticleDetailsPage />}
+              />
             </Switch>
           </div>
         </Router>

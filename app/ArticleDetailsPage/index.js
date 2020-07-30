@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import useHttp from "services/useHttp";
 import PostDetails from "../_components/Post/details";
@@ -17,7 +17,7 @@ const ArticleDetailsPage = (props) => {
     });
     if (isLoading) return <FooterInfo content="Loading article..." />;
     else if (error) return <FooterInfo content="Error loading post" />;
-    else return <PostDetails post={response.data} />;
+    else return <PostDetails post={response && response.data} />;
   }
 };
 

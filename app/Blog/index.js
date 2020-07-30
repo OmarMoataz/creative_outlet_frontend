@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Formik, Field, Form } from "formik";
+
 import useHttp from "../_services/useHttp";
 
 import "./styles.css";
 
 const Blog = (props) => {
-  const triggerRequest = useHttp({
-    url: "/posts", 
-    method: "POST"
+  const [articleData, setArticleData] = useState(null);
+  const [response, error, isLoading] = useHttp({
+    method: "POST",
+    url: "/posts",
+    data: articleData,
+    isDelayedRequest: true
   })
+
+  useEffect(() => {
+    if (response) {
+      const articleId = response.data.id;
+      props.history.push(`/${articleId}`);
+    }
+  }, [response]);
   
   const publishArticle = async (values) => {
-    let articleData = new FormData();
+    let articleFormData = new FormData();
 
     try {
-      articleData.set("content", values.content);
-      articleData.set("title", values.title);
-      articleData.set("description", values.description);
-      articleData.set("thumbnail", values.thumbnail);
+      articleFormData.set("content", values.content);
+      articleFormData.set("title", values.title);
+      articleFormData.set("description", values.description);
+      articleFormData.set("thumbnail", values.thumbnail);
 
-      const [response, error, isLoading] = await triggerRequest(articleData);
-      console.log("returned");
-      const articleId = response.data.id;
-      console.log(articleId);
-      props.history.push(`/${articleId}`);
+      setArticleData(articleFormData); // triggers the request.
     } catch (e) {
       console.log(`Something went wrong while creating article! ${e}`);
     }

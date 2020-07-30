@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
 import requester from "../_helpers/requester";
 
 const useHttp = (props) => {
-  const { url, method } = props;
+  const { url, method, data, isDelayedRequest } = props;
 
-  const [isLoading, setLoading] = useState(true);
-  const [response, setResponse] = useState({});
+  const [isLoading, setLoading] = useState(false);
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  
+  useEffect(() => {
+    if (data) {
+      triggerRequest();
+    }
+  }, [data]);
 
-  const triggerRequest = async (data) => {
-    setLoading(true);
+  useEffect(() => {
+    if (!isDelayedRequest) {
+      triggerRequest();
+    }
+  }, []);
+
+  const triggerRequest = async () => {
     try {
       setLoading(true);
       const responseData = await requester({
@@ -26,11 +35,9 @@ const useHttp = (props) => {
     } finally {
       setLoading(false);
     }
-
-    return [response, error, isLoading];
   };
 
-  return triggerRequest;
+  return [response, error, isLoading];
 };
 
 export default useHttp;
