@@ -1,33 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import requester from "helpers/requester";
+import useHttp from "services/useHttp";
 import PostDetails from "../_components/Post/details";
 import FooterInfo from "../_components/FooterInfo";
 
 import { useParams } from "react-router-dom";
 
 const ArticleDetailsPage = (props) => {
-  const [article, setArticle] = useState(props.article);
-  const [isLoading, setIsLoading] = useState(true);
-  const { id } = useParams();
-
-  useEffect(() => {
-    const getData = async () => {
-      const articleDetailsAPI = `/posts/${id}`;
-
-      const response = await requester({
-        method: "GET",
-        url: articleDetailsAPI
-      });
-
-      setArticle(response.data);
-      setIsLoading(false);
-    };
-    getData(id);
-  }, []);
-
-  if (!isLoading) return <PostDetails post={article} />;
-  else return <FooterInfo content="Loading article..." />;
+  if (props.article) {
+    return <PostDetails post={article} />;
+  } else {
+    const { id } = useParams();
+    const [response, error, isLoading] = useHttp({
+      url: `/posts/${id}`,
+      method: "GET"
+    });
+    if (isLoading) return <FooterInfo content="Loading article..." />;
+    else if (error) return <FooterInfo content="Error loading post" />;
+    else return <PostDetails post={response && response.data} />;
+  }
 };
 
 export default ArticleDetailsPage;
