@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import requester from "../_helpers/requester";
+import requester from "../../_helpers/requester";
 
 const useHttp = (props) => {
   const { url, method, data, isDelayedRequest } = props;

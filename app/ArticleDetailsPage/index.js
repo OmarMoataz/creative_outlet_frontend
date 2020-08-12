@@ -1,6 +1,6 @@
 import React from "react";
 
-import useHttp from "services/useHttp";
+import useHttp from "shared-components/CustomHooks/useHttp";
 import PostDetails from "../_components/Post/details";
 import FooterInfo from "../_components/FooterInfo";
 

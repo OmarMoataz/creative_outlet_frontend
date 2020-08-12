@@ -33,11 +33,6 @@ class App extends React.Component {
     );
   }
 
-  logout() {
-    authenticationService.logout();
-    history.push("/login");
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -46,7 +41,7 @@ class App extends React.Component {
           <div>
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/" component={HomePage} />
+              <PrivateRoute exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
               <PrivateRoute
                 exact
