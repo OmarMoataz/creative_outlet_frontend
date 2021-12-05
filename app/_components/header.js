@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { authenticationService } from "../_services/authenticationService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { roles } from "../_helpers/constants";
 
-const Header = props => {
+const Header = () => {
   const [isMenuShown, setMenuShown] = useState(false);
+
+  const renderRoleBasedItems = () => {
+    if (authenticationService.currentUserValue().user.role_id == roles.writer) {
+      return (
+        <a
+          href="/blog"
+          className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+        >
+          Blog
+        </a>
+      );
+    }
+  };
 
   const renderMenu = () => {
     return (
@@ -15,12 +29,7 @@ const Header = props => {
         <div className="text-sm lg:flex-grow">
           {authenticationService.currentUserValue() ? (
             <React.Fragment>
-              <a
-                href="/blog"
-                className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-              >
-                Blog
-              </a>
+              {renderRoleBasedItems()}
               <button
                 onClick={() => authenticationService.logout()}
                 className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"

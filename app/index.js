@@ -41,9 +41,9 @@ class App extends React.Component {
           <div>
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/" component={HomePage} />
+              <Route exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
-              <PrivateRoute
+              <Route
                 exact
                 path="/:id"
                 children={<ArticleDetailsPage />}

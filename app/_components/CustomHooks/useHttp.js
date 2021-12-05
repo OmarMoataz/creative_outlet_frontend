@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import requester from "../../_helpers/requester";
 
 const useHttp = (props) => {
-  const { url, method, data, isDelayedRequest } = props;
+  const { url, method, data, isDelayedRequest, withAuth } = props;
 
   const [isLoading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
@@ -28,7 +28,7 @@ const useHttp = (props) => {
         method,
         url,
         data
-      });
+      }, withAuth);
       setResponse(responseData);
     } catch(e) {
       setError(e);

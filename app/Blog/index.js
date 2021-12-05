@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from "react";
-
+import React from "react";
 import { Formik, Field, Form } from "formik";
 
-import useHttp from "shared-components/CustomHooks/useHttp";
+import requester from "../_helpers/requester";
 
 import "./styles.css";
 
 const Blog = (props) => {
-  const [articleData, setArticleData] = useState(null);
-  const [response, error, isLoading] = useHttp({
-    method: "POST",
-    url: "/posts",
-    data: articleData,
-    isDelayedRequest: true
-  })
-
-  useEffect(() => {
-    if (response) {
-      const articleId = response.data.id;
-      props.history.push(`/${articleId}`);
-    }
-  }, [response]);
-  
   const publishArticle = async (values) => {
     let articleFormData = new FormData();
 
@@ -29,9 +13,15 @@ const Blog = (props) => {
       articleFormData.set("content", values.content);
       articleFormData.set("title", values.title);
       articleFormData.set("description", values.description);
-      articleFormData.set("thumbnail", values.thumbnail);
+      if (values.thumbnail) articleFormData.set("thumbnail", values.thumbnail);
 
-      setArticleData(articleFormData); // triggers the request.
+      const response = await requester({
+        method: "POST",
+        url: "/posts",
+        data: articleFormData,
+      }, true);
+      const articleId = response.data.id;
+      props.history.push(`/${articleId}`);
     } catch (e) {
       console.log(`Something went wrong while creating article! ${e}`);
     }
