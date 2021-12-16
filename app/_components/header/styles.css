@@ -1,0 +1,11 @@
+@media screen and (max-device-width: 576px) {
+  .header__action {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-device-width: 567px) {
+  .header__title {
+    font-size: 4rem;
+  }
+}

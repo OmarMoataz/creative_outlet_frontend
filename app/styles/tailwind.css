@@ -17878,12 +17878,6 @@ video {
   transition-delay: 1000ms;
 }
 
-/* Document level adjustments */
-
-html {
-  font-size: 25px;
-}
-
 @media (min-width: 992px) {
   html { font-size: 14px;
   }

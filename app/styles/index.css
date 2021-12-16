@@ -4,10 +4,6 @@
 
 @tailwind utilities;
 
-/* Document level adjustments */
-html {
-  font-size: 25px;
-}
 @media (min-width: 992px) {
   html { font-size: 14px; }
 }

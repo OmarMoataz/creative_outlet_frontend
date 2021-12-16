@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { authenticationService } from "../_services/authenticationService";
+import { authenticationService } from "../../_services/authenticationService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { roles } from "../_helpers/constants";
+import { roles } from "../../_helpers/constants";
+
+import './styles.css';
 
 const Header = () => {
   const [isMenuShown, setMenuShown] = useState(false);
@@ -11,7 +13,7 @@ const Header = () => {
       return (
         <a
           href="/blog"
-          className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          className="header__action lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
         >
           Blog
         </a>
@@ -32,7 +34,7 @@ const Header = () => {
               {renderRoleBasedItems()}
               <button
                 onClick={() => authenticationService.logout()}
-                className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+                className="header__action lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               >
                 Logout
               </button>
@@ -40,7 +42,7 @@ const Header = () => {
           ) : (
             <a
               href="/login"
-              className="lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              className="header__action lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
             >
               Login
             </a>
@@ -55,7 +57,7 @@ const Header = () => {
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <a
           href="/"
-          className="text-white mr-6 sm:text-5xl lg:text-2xl font-semibold tracking-tight"
+          className="header__title text-white mr-6 sm:text-5xl lg:text-2xl font-semibold tracking-tight"
         >
           Creative Outlet
         </a>

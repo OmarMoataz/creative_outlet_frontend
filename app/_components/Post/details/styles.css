@@ -10,10 +10,22 @@
   white-space: pre-wrap;
 }
 
+@media screen and (max-device-width: 576px) {
+  .post__content {
+    font-size: 3rem;
+  }
+}
+
 .post__title {
   font-size: 2rem;
   padding: 10px;
   text-align: center;
+}
+
+@media screen and (max-device-width: 576px) {
+  .post__title {
+    font-size: 4rem;
+  }
 }
 
 .post__thumbnail {
@@ -27,4 +39,10 @@
   font-size: 1.5rem;
   color: gray;
   margin-bottom: 10px;
+}
+
+@media screen and (min-width: 576px) {
+  .post__desc {
+    font-size: 2rem;
+  }
 }
