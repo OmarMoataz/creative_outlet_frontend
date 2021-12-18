@@ -2,17 +2,25 @@ import axios from "axios";
 import apiConfig from "config";
 import { authenticationService } from "services/authenticationService";
 
-const requester = config => {
+const requester = (config, withAuth) => {
   const url = `${apiConfig.apiUrl}${config.url}`;
-  const configWithToken = {
-    ...config,
-    url,
-    headers: {
-      'Authorization': `bearer ${authenticationService.currentUserValue().token}`
+  let finalConfig;
+  if (withAuth) {
+    finalConfig = {
+      ...config,
+      url,
+      headers: {
+        'Authorization': `bearer ${authenticationService.currentUserValue().token}`
+      },
+    };
+  } else {
+    finalConfig = {
+      ...config,
+      url,
     }
-  };
+  }
 
-  return axios(configWithToken);
+  return axios(finalConfig);
 };
 
 export default requester;

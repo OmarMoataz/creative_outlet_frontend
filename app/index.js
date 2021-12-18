@@ -4,7 +4,7 @@ import { Router, Route, Switch } from "react-router-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+import { faCheckSquare, faBars } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles/tailwind.css";
 
@@ -13,13 +13,14 @@ import { authenticationService } from "@/_services";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import Blog from "./Blog";
-import Header from "./_components/header";
+import Header from "./_components/header/header";
 import { PrivateRoute } from "@/_components";
 import ArticleDetailsPage from "./ArticleDetailsPage";
 
 class App extends React.Component {
   constructor(props) {
     library.add(fab, faCheckSquare);
+    library.add(fab, faBars);
     super(props);
 
     this.state = {
@@ -41,9 +42,9 @@ class App extends React.Component {
           <div>
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/" component={HomePage} />
+              <Route exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
-              <PrivateRoute
+              <Route
                 exact
                 path="/:id"
                 children={<ArticleDetailsPage />}
