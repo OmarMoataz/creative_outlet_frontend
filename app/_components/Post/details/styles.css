@@ -8,6 +8,9 @@
   text-align: left;
   margin-top: 20px;
   white-space: pre-wrap;
+  line-break: auto;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 @media screen and (max-device-width: 576px) {
