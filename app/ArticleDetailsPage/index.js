@@ -15,6 +15,7 @@ const ArticleDetailsPage = (props) => {
       url: `/posts/${id}`,
       method: "GET"
     });
+
     if (isLoading) return <FooterInfo content="Loading article..." />;
     else if (error) return <FooterInfo content="Error loading post" />;
     else return <PostDetails post={response && response.data} />;

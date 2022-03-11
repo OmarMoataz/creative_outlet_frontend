@@ -8,15 +8,14 @@ const PostDetails = props => {
   if (post) {
     return (
       <div className="post">
-        <div className="post__title"> {post.title} </div>
-        <div className="post__desc"> {post.description} </div>
+        {post.title && <div className="post__title"> {post.title} </div>}
+        {post.description && <div className="post__desc"> {post.description} </div>}
         {post.thumbnailUrl && <img className="post__thumbnail" src={post.thumbnailUrl} />}
         <div className="post__content"> {post.content} </div>
       </div>
     );
-  } else {
-    return <div> Please choose a post to read. </div>
   }
+  return <div className='centered'> <div className='big-font'> You might wanna choose an article from the left. </div>  </div>
 };
 
 export default PostDetails;
