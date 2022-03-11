@@ -49,3 +49,14 @@
     font-size: 2rem;
   }
 }
+
+.centered {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-font {
+  font-size: 1.5rem;
+}
