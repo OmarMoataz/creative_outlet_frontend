@@ -1,42 +1,45 @@
 .post-card {
   padding: 20px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .post-card__image-wrap {
   display: inline-block;
-  margin-right: 30px;
+  margin-inline-end: 30px;
 }
 
 .post-card__image {
   border-radius: 50%;
-  width: 10rem;
+  border: 1px solid grey;
+  width: 70px;
+  height: 70px;
+  flex: 1 1;
 }
 
 .post-card__title {
-  font-size: 3rem;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .post-card__description {
-  font-size: 2.5rem;
+  font-size: 1rem;
   color: grey;
 }
 
 .post-card__info-wrap {
   display: inline-block;
+  flex: 1 1;
   top: 10%;
 }
 
 @media screen and (min-width: 992px) {
-  .post-card__image {
-    width: 2.5rem;
-  }
-
   .post-card__title {
-    font-size: inherit;
+    font-size: 1rem;
   }
 
   .post-card__description {
-    font-size: inherit; 
+    font-size: 1rem;
   }
 }

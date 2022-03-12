@@ -15,3 +15,7 @@
   width: 100%;
   text-align: left;
 }
+
+.listing-item__wrap:focus {
+  outline: 1px auto #38B2AB;
+}

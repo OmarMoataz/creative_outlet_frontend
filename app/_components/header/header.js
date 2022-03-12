@@ -40,12 +40,20 @@ const Header = () => {
               </button>
             </React.Fragment>
           ) : (
-            <a
-              href="/login"
-              className="header__action lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-            >
-              Login
-            </a>
+            <>
+              <a 
+                href="/register"
+                className="header__action lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              >
+                Register
+              </a>
+              <a
+                href="/login"
+                className="header__action lg:float-right lg:mr-3 text-2xl block mt-4 sm:block lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              >
+                Login
+              </a>
+            </>
           )}
         </div>
       </div>
@@ -53,7 +61,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-2">
+    <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-2 header__container">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <a
           href="/"
@@ -68,7 +76,7 @@ const Header = () => {
           onClick={() => setMenuShown(!isMenuShown)}
           className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
         >
-          <FontAwesomeIcon className="sm:text-5xl" icon="bars" />
+          <FontAwesomeIcon className="header__drawer-icon" icon="bars" />
         </button>
       </div>
       {renderMenu()}

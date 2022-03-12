@@ -4,6 +4,8 @@ import { withRouter } from "react-router";
 import * as Yup from "yup";
 import { authenticationService } from "../_services/authenticationService";
 
+import '@/forms.css';
+
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -15,23 +17,23 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="centered form__container">
         <Formik
           initialValues={{
             email: "",
-            password: ""
+            password: "",
           }}
           validationSchema={Yup.object().shape({
             email: Yup.string().required("Email is required"),
-            password: Yup.string().required("Password is required")
+            password: Yup.string().required("Password is required"),
           })}
           onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
             setStatus();
             authenticationService.login(email, password).then(
-              user => {
+              () => {
                 this.props.history.push("/");
               },
-              error => {
+              (error) => {
                 setSubmitting(false);
                 setStatus(error);
               }
@@ -39,46 +41,46 @@ class LoginPage extends Component {
           }}
         >
           {({ status, isSubmitting }) => (
-            <Form className="px-4">
-              <h1 className="my-1 font-bold text-lg"> Login </h1>
-              <div className="mb-4">
+            <Form className="form__group">
+              <h1 className="form__title"> Login </h1>
+              <div className="form__group">
                 <label
-                  className="mb-1 w-full lg:w-56 text-sm block"
+                  className="form__input-label"
                   htmlFor="email"
                 >
                   My Email
                 </label>
                 <Field
                   placeholder="john.doe@example.com"
-                  className="w-full lg:w-56 lg:mr-1 text-sm p-1 border"
+                  className="form__input-field"
                   name="email"
                   type="text"
-                />  
+                />
                 <ErrorMessage
-                  className="inline-block text-red-600"
+                  className="form__field-error"
                   name="email"
                   component="div"
                 />
               </div>
-              <div className="mb-4">
-                <label className="mb-1 text-sm block" htmlFor="password">
+              <div className="form__group">
+                <label className="form__input-label" htmlFor="password">
                   My Password
                 </label>
                 <Field
                   placeholder="my password"
-                  className="w-full lg:w-56 lg:mr-1 text-sm p-1 border"
+                  className="form__input-field"
                   name="password"
                   type="password"
                 />
                 <ErrorMessage
-                  className="inline-block text-red-600"
+                  className="form__field-error"
                   name="password"
                   component="div"
                 />
               </div>
-              <div>
+              <div className="form__group">
                 <button
-                  className="w-full lg:w-56 bg-gray-500 border"
+                  className="button form__submit-button"
                   type="submit"
                   disabled={isSubmitting}
                 >

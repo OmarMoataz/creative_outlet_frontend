@@ -4,7 +4,7 @@
 }
 
 .post__content {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-align: left;
   margin-top: 20px;
   white-space: pre-wrap;
@@ -13,22 +13,10 @@
   overflow-wrap: break-word;
 }
 
-@media screen and (max-device-width: 576px) {
-  .post__content {
-    font-size: 3rem;
-  }
-}
-
 .post__title {
   font-size: 2rem;
   padding: 10px;
   text-align: center;
-}
-
-@media screen and (max-device-width: 576px) {
-  .post__title {
-    font-size: 4rem;
-  }
 }
 
 .post__thumbnail {
@@ -39,24 +27,7 @@
 }
 
 .post__desc {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: gray;
   margin-bottom: 10px;
-}
-
-@media screen and (min-width: 576px) {
-  .post__desc {
-    font-size: 2rem;
-  }
-}
-
-.centered {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.big-font {
-  font-size: 1.5rem;
 }

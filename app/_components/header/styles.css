@@ -1,11 +1,29 @@
-@media screen and (max-device-width: 576px) {
+@media screen and (max-width: 576px) {
   .header__action {
-    font-size: 3rem;
+    font-size: 1.2rem;
   }
 }
 
-@media screen and (max-device-width: 567px) {
+.header__title {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 567px) {
   .header__title {
-    font-size: 4rem;
+    font-size: 2rem;
+  }
+
+  .header__drawer-icon {
+    font-size: 1.3rem;
+  }
+}
+
+.header__container {
+  padding: 10px;
+}
+
+@media screen and (min-width: 992px) {
+  .header__container {
+    padding: 10px ;
   }
 }
