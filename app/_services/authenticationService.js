@@ -10,9 +10,28 @@ const currentUserSubject = new BehaviorSubject(
 export const authenticationService = {
   login,
   logout,
+  register,
   currentUser: currentUserSubject.asObservable(),
   currentUserValue () { return currentUserSubject.value }
 };
+
+function register(userDetails) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(userDetails),
+  };
+
+  return fetch(`${config.apiUrl}/users`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            currentUserSubject.next(user);
+
+            return user;
+        });
+}
 
 function login(email, password) {
   const requestOptions = {

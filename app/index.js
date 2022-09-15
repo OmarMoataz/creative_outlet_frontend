@@ -7,10 +7,12 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { faCheckSquare, faBars } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles/tailwind.css";
+import "./common.css";
 
 import { history } from "@/_helpers";
 import { authenticationService } from "@/_services";
 import LoginPage from "./LoginPage";
+import RegisterPage from "./RegisterPage";
 import HomePage from "./HomePage";
 import Blog from "./Blog";
 import Header from "./_components/header/header";
@@ -42,6 +44,7 @@ class App extends React.Component {
           <div>
             <Switch>
               <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/register" component={RegisterPage} />
               <Route exact path="/" component={HomePage} />
               <PrivateRoute exact path="/blog" component={Blog} />
               <Route
