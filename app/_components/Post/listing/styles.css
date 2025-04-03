@@ -6,7 +6,7 @@
   }
 
   .listing__scrollable-div {
-    height: 100vh;
+    height: 100vh - 45.5px;
     overflow: auto;
   }
 }
